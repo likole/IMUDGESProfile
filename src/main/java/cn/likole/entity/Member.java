@@ -13,8 +13,17 @@ public class Member {
     private int gid;
     private String password;
     private String description;
+    private List<Picture> pictures;
+    private String token;
+    private String homepage;
+    private String github;
+    private String qq;
 
-    @OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
+    public void setGid(Integer gid) {
+        this.gid = gid;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "pid")
     public List<Picture> getPictures() {
         return pictures;
@@ -23,8 +32,6 @@ public class Member {
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
     }
-
-    private List<Picture> pictures;
 
     @Id
     @Column(name = "mid")
@@ -100,5 +107,45 @@ public class Member {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "token")
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    @Basic
+    @Column(name = "homepage")
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
+    }
+
+    @Basic
+    @Column(name = "github")
+    public String getGithub() {
+        return github;
+    }
+
+    public void setGithub(String github) {
+        this.github = github;
+    }
+
+    @Basic
+    @Column(name = "qq")
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
     }
 }

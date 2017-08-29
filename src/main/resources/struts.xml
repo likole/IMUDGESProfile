@@ -6,7 +6,28 @@
 
 <struts>
     <constant name="struts.devMode" value="true"/>
-    <package name="default" namespace="/" extends="json-default">
+
+    <package name="admin" namespace="/admin" extends="struts-default">
+        <default-action-ref name="login"/>
+        <!--登陆-->
+        <action name="login" class="cn.likole.controller.MemberController" method="login">
+            <result name="input">/WEB-INF/login.jsp</result>
+            <result type="redirectAction">profile</result>
+        </action>
+        <!--个人简介-->
+        <action name="profile" class="memberController" method="profile">
+            <result name="input" type="redirectAction">login</result>
+            <result>/WEB-INF/profile.jsp</result>
+        </action>
+        <!--修改信息-->
+        <action name="changeInfo" class="memberController" method="changeInfo">
+            <result name="input" type="redirectAction">login</result>
+            <result type="redirectAction">profile</result>
+        </action>
+    </package>
+
+
+    <package name="default" namespace="/api" extends="json-default">
         <default-action-ref name="404"/>
         <global-results>
             <result name="500" type="redirectAction">500</result>
@@ -16,15 +37,27 @@
         </global-exception-mappings>
         <action name="500" class="errorController" method="error500"></action>
         <action name="404" class="errorController" method="error404"></action>
+
+
+        <!--对外接口-->
+        <!--获取所有组-->
         <action name="groups" class="cn.likole.controller.ProfileController" method="getGroupList">
             <result type="json">
                 <param name="root">map</param>
             </result>
         </action>
+        <!--获取组中所有成员-->
         <action name="members" class="cn.likole.controller.ProfileController" method="getMemberList">
             <result type="json">
                 <param name="root">map</param>
             </result>
         </action>
+        <!--获取成员信息-->
+        <action name="member" class="cn.likole.controller.ProfileController" method="getMember">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+
     </package>
 </struts>

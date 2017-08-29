@@ -1,4 +1,4 @@
-package cn.likole.util;
+package cn.likole.Filter;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

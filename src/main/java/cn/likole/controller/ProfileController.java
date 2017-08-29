@@ -19,6 +19,7 @@ import java.util.Map;
 public class ProfileController extends ActionSupport {
 
     int gid;
+    int mid;
 
     Map<String,Object> map=new HashMap<String, Object>();
 
@@ -31,6 +32,14 @@ public class ProfileController extends ActionSupport {
 
     public void setGid(int gid) {
         this.gid = gid;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
     }
 
     public Map<String, Object> getMap() {
@@ -50,10 +59,24 @@ public class ProfileController extends ActionSupport {
         return SUCCESS;
     }
 
+    /**
+     * 获取成员列表
+     * @return
+     */
     public String getMemberList()
     {
         map.put("group",profileService.getGroup(gid));
         map.put("members",profileService.getMemberList(gid));
+        return SUCCESS;
+    }
+
+    /**
+     * 获取成员
+     * @return
+     */
+    public String getMember()
+    {
+        map.put("members",profileService.getMemberList(mid));
         return SUCCESS;
     }
 }

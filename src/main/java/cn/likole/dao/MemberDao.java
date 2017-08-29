@@ -1,11 +1,13 @@
 package cn.likole.dao;
 
 import cn.likole.entity.Member;
+import jdk.nashorn.internal.ir.ReturnNode;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.plaf.TextUI;
 import java.util.List;
 
 /**
@@ -21,6 +23,12 @@ public class MemberDao extends HibernateDaoSupport {
 
     public Member getByMid(int mid){
         return getHibernateTemplate().get(Member.class,mid);
+    }
+
+    public Member getBySid(String sid){
+        List<Member> members= (List<Member>) getHibernateTemplate().find("from Member where sid=?",sid);
+        if(members.size()>0) return members.get(0);
+        return null;
     }
 
     public List<Member> getByGid(int gid){
