@@ -1,12 +1,10 @@
 package cn.likole.controller;
 
-import com.opensymphony.xwork2.ActionContext;
+import cn.likole.service.ProfileService;
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import cn.likole.service.ProfileService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +19,7 @@ public class ProfileController extends ActionSupport {
     int gid;
     int mid;
 
-    Map<String,Object> map=new HashMap<String, Object>();
+    Map<String, Object> map = new HashMap<String, Object>();
 
     @Autowired
     ProfileService profileService;
@@ -52,31 +50,32 @@ public class ProfileController extends ActionSupport {
 
     /**
      * 获取组列表
+     *
      * @return
      */
-    public String getGroupList(){
-        map.put("groups",profileService.getGroupList());
+    public String getGroupList() {
+        map.put("groups", profileService.getGroupList());
         return SUCCESS;
     }
 
     /**
      * 获取成员列表
+     *
      * @return
      */
-    public String getMemberList()
-    {
-        map.put("group",profileService.getGroup(gid));
-        map.put("members",profileService.getMemberList(gid));
+    public String getMemberList() {
+        map.put("group", profileService.getGroup(gid));
+        map.put("members", profileService.getMemberList(gid));
         return SUCCESS;
     }
 
     /**
      * 获取成员
+     *
      * @return
      */
-    public String getMember()
-    {
-        map.put("members",profileService.getMemberList(mid));
+    public String getMember() {
+        map.put("member", profileService.getMember(mid));
         return SUCCESS;
     }
 }

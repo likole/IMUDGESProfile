@@ -10,8 +10,8 @@ import java.security.NoSuchAlgorithmException;
 public class MD5Util {
 
     public static String encode(String s) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest md5=MessageDigest.getInstance("md5");
-        byte[] bytes=md5.digest(s.getBytes("utf-8"));
+        MessageDigest md5 = MessageDigest.getInstance("md5");
+        byte[] bytes = md5.digest(s.getBytes("utf-8"));
         return bytesToHex(bytes);
     }
 

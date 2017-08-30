@@ -18,12 +18,13 @@ public class Member {
     private String homepage;
     private String github;
     private String qq;
+    private String email;
 
     public void setGid(Integer gid) {
         this.gid = gid;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "pid")
     public List<Picture> getPictures() {
         return pictures;
@@ -147,5 +148,15 @@ public class Member {
 
     public void setQq(String qq) {
         this.qq = qq;
+    }
+
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

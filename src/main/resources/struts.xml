@@ -5,7 +5,8 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <constant name="struts.devMode" value="true"/>
+
+    <constant name="struts.devMode" value="false"/>
 
     <package name="admin" namespace="/admin" extends="struts-default">
         <default-action-ref name="login"/>
@@ -22,7 +23,13 @@
         <!--修改信息-->
         <action name="changeInfo" class="memberController" method="changeInfo">
             <result name="input" type="redirectAction">login</result>
-            <result type="redirectAction">profile</result>
+            <result type="redirectAction">profile?message=${message}</result>
+        </action>
+        <!--修改密码-->
+        <action name="changePassword" class="memberController" method="changePassword">
+            <result name="input" type="redirectAction">login</result>
+            <result type="redirectAction">profile?message=${message}</result>
+            <result name="error" type="redirectAction">profile?message=${message}</result>
         </action>
     </package>
 
@@ -34,6 +41,7 @@
         </global-results>
         <global-exception-mappings>
             <exception-mapping exception="java.lang.Exception" result="500"></exception-mapping>
+            <exception-mapping exception="java.sql.SQLException" result="500"></exception-mapping>
         </global-exception-mappings>
         <action name="500" class="errorController" method="error500"></action>
         <action name="404" class="errorController" method="error404"></action>

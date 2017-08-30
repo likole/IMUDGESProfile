@@ -28,26 +28,26 @@ public class ProfileService {
     @Autowired
     InfoDao infoDao;
 
-    public List<Groups> getGroupList(){
+    public List<Groups> getGroupList() {
         return groupDao.getAll();
     }
 
-    public Groups getGroup(int gid){
+    public Groups getGroup(int gid) {
         return groupDao.getByGid(gid);
     }
 
-    public List<MemberDto> getMemberList(int gid){
-        List<Member> members= memberDao.getByGid(gid);
-        List<MemberDto> memberDtos=new ArrayList<MemberDto>();
+    public List<MemberDto> getMemberList(int gid) {
+        List<Member> members = memberDao.getByGid(gid);
+        List<MemberDto> memberDtos = new ArrayList<MemberDto>();
 
-        for(Member member:members){
-            Info info=infoDao.getById(member.getSid());
+        for (Member member : members) {
+            Info info = infoDao.getById(member.getSid());
 
-            MemberDto memberDto=new MemberDto();
+            MemberDto memberDto = new MemberDto();
             memberDto.setName(info.getName());
             memberDto.setMajor(info.getZy());
             memberDto.setGrade(info.getBj());
-            memberDto.setBoy(info.getGender()==1);
+            memberDto.setBoy(info.getGender() == 1);
             memberDto.setGroup(member.getGid());
             memberDto.setDescription(member.getDescription());
             memberDto.setPictures(member.getPictures());
@@ -58,6 +58,8 @@ public class ProfileService {
         return memberDtos;
     }
 
-    public Member getMember(int mid){return memberDao.getByMid(mid);}
+    public Member getMember(int mid) {
+        return memberDao.getByMid(mid);
+    }
 
 }

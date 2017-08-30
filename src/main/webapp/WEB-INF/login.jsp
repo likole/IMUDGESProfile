@@ -77,7 +77,7 @@
                     </div>
                     <div class="col-xs-8 bs-reset">
                         <div class="login-copyright text-right">
-                            <p>Copyright &copy; IMUDGES 2017</p>
+                            <p>Copyright &copy; IMUDGES 2017 by likole</p>
                         </div>
                     </div>
                 </div>

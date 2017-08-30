@@ -1,7 +1,6 @@
 package cn.likole.dto;
 
 import cn.likole.entity.Picture;
-import oracle.jrockit.jfr.StringConstantPool;
 
 import java.util.List;
 

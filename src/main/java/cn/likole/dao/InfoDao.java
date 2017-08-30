@@ -15,13 +15,13 @@ import java.util.List;
 public class InfoDao extends HibernateDaoSupport {
 
     @Autowired
-    InfoDao(SessionFactory sessionFactory){
+    InfoDao(SessionFactory sessionFactory) {
         setSessionFactory(sessionFactory);
     }
 
     public Info getById(String id) {
-         List<Info> infos= (List<Info>) getHibernateTemplate().find("from Info where id=?",id);
-         if(infos.size()>0) return infos.get(0);
-         return null;
+        List<Info> infos = (List<Info>) getHibernateTemplate().find("from Info where id=?", id);
+        if (infos.size() > 0) return infos.get(0);
+        return null;
     }
 }

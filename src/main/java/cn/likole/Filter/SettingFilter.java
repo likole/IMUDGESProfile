@@ -11,8 +11,8 @@ public class SettingFilter implements javax.servlet.Filter {
     }
 
     public void doFilter(javax.servlet.ServletRequest req, javax.servlet.ServletResponse resp, javax.servlet.FilterChain chain) throws javax.servlet.ServletException, IOException {
-        HttpServletResponse response= (HttpServletResponse) resp;
-        response.setHeader("Access-Control-Allow-Origin","*");
+        HttpServletResponse response = (HttpServletResponse) resp;
+        response.setHeader("Access-Control-Allow-Origin", "*");
         chain.doFilter(req, resp);
     }
 
