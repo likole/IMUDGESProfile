@@ -3,15 +3,21 @@ package cn.likole.controller;
 import cn.likole.entity.Info;
 import cn.likole.entity.Member;
 import cn.likole.service.MemberService;
+import cn.likole.util.MD5Util;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import java.io.UnsupportedEncodingException;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.*;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
+import java.util.UUID;
 
 /**
  * Created by likole on 8/29/17.
@@ -25,6 +31,8 @@ public class MemberController extends ActionSupport implements ModelDriven<Membe
     private Info info;
     private Member memberModel = new Member();
     private int message;//1修改成功 2修改失败
+    private File file;
+    private String fileFileName;
     @Autowired
     MemberService memberService;
 
@@ -58,6 +66,22 @@ public class MemberController extends ActionSupport implements ModelDriven<Membe
 
     public void setMessage(int message) {
         this.message = message;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public String getFileFileName() {
+        return fileFileName;
+    }
+
+    public void setFileFileName(String fileFileName) {
+        this.fileFileName = fileFileName;
     }
 
     public Member getModel() {
@@ -119,6 +143,52 @@ public class MemberController extends ActionSupport implements ModelDriven<Membe
         }
         setMessage(2);
         return ERROR;
+    }
+
+    /**
+     * 更改头像
+     * @return
+     * @throws IOException
+     * @throws NoSuchAlgorithmException
+     */
+    public String changeAvatar() throws IOException, NoSuchAlgorithmException {
+        if (!ActionContext.getContext().getSession().containsKey("sid")) return INPUT;
+
+        //限制长度
+        if(file.length()>5000000)
+        {
+            return ERROR;
+        }
+
+        //获取路径
+        String path= ServletActionContext.getServletContext().getRealPath("/avatar");
+        String fileName= MD5Util.encode(UUID.randomUUID().toString())+fileFileName.substring(fileFileName.lastIndexOf('.'));
+
+        //限制格式
+        Image image= ImageIO.read(file);
+        if(image==null)
+        {
+            return ERROR;
+        }
+
+        //本地存储
+
+        InputStream inputStream=new FileInputStream(file);
+        OutputStream outputStream=new FileOutputStream(new File(path,fileName));
+
+        byte[] bytes=new byte[1024];
+
+        int len=0;
+
+        while (-1!=(len=inputStream.read(bytes,0,bytes.length))){
+            outputStream.write(bytes);
+        }
+
+        inputStream.close();
+        outputStream.close();
+
+        memberService.changeAvatar(ActionContext.getContext().getSession().get("sid").toString(),fileName);
+        return SUCCESS;
     }
 
 

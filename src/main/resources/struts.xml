@@ -23,12 +23,18 @@
         <!--修改信息-->
         <action name="changeInfo" class="memberController" method="changeInfo">
             <result name="input" type="redirectAction">login</result>
-            <result type="redirectAction">profile?message=${message}</result>
+            <result type="redirectAction">profile</result>
+        </action>
+        <!--修改头像-->
+        <action name="changeAvatar" class="memberController" method="changeAvatar">
+            <result name="input" type="redirectAction">login</result>
+            <result type="redirectAction">profile</result>
+            <result name="error" type="redirectAction">profile?message=${message}</result>
         </action>
         <!--修改密码-->
         <action name="changePassword" class="memberController" method="changePassword">
             <result name="input" type="redirectAction">login</result>
-            <result type="redirectAction">profile?message=${message}</result>
+            <result type="redirectAction">profile</result>
             <result name="error" type="redirectAction">profile?message=${message}</result>
         </action>
     </package>

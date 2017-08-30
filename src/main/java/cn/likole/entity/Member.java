@@ -19,6 +19,7 @@ public class Member {
     private String github;
     private String qq;
     private String email;
+    private String avatar;
 
     public void setGid(Integer gid) {
         this.gid = gid;
@@ -158,5 +159,15 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Basic
+    @Column(name = "avatar")
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

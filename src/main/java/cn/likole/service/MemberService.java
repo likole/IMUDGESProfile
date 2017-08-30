@@ -34,6 +34,7 @@ public class MemberService {
             if (!password.equals(MD5Util.encode(info.getIdcard().substring(12)))) return -1;
             member = new Member();
             member.setSid(sid);
+            member.setAvatar("default.jpg");
             member.setPassword(password);
             member.setToken(MD5Util.encode(UUID.randomUUID().toString()));
             memberDao.save(member);
@@ -66,6 +67,11 @@ public class MemberService {
         if (!member.getPassword().equals(old)) return -1;
         member.setPassword(newPassword);
         return 0;
+    }
+
+    public void changeAvatar(String sid,String path){
+        Member member = memberDao.getBySid(sid);
+        member.setAvatar(path);
     }
 
 }

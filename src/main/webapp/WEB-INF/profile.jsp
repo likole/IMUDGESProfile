@@ -17,7 +17,7 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>Metronic | User Profile 2</title>
+    <title>个人信息管理 | IMUDGES成员管理</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
@@ -62,7 +62,22 @@
         <!-- BEGIN PAGE HEADER-->
         <!-- BEGIN PAGE BAR -->
         <div class="page-bar">
-            <h2>IMUDGES</h2>
+            <ul class="page-breadcrumb">
+                <li>
+                    <span>IMUDGES成员管理</span>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>个人信息管理</span>
+                </li>
+            </ul>
+            <div class="page-toolbar">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn red btn-sm btn-outline"> 退出
+                        <i class="icon-logout"></i>
+                    </button>
+                </div>
+            </div>
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
@@ -98,7 +113,7 @@
                             <div class="col-md-3">
                                 <ul class="list-unstyled profile-nav">
                                     <li>
-                                        <img src="../assets/pages/media/profile/people19.png"
+                                        <img src="../avatar/<s:property value="member.avatar" default="default.jpg"/>"
                                              class="img-responsive pic-bordered" alt=""/>
                                     </li>
                                 </ul>
@@ -110,7 +125,8 @@
                                         <p id="description">
                                         </p>
                                         <p>
-                                            <a href="http://<s:property value="member.homepage"/>"><s:property value="member.homepage"/> </a>
+                                            <a href="http://<s:property value="member.homepage"/>"><s:property
+                                                    value="member.homepage"/> </a>
                                         </p>
                                         <ul class="list-inline">
                                             <li>
@@ -224,7 +240,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">个人介绍</label>
-                                                <textarea id="desc" class="form-control" data-provide="markdown" rows="10"
+                                                <textarea id="desc" class="form-control" data-provide="markdown"
+                                                          rows="10"
                                                           placeholder="<s:property value="member.description"/>"
                                                           name="description"><s:property
                                                         value="member.description"/></textarea>
@@ -236,7 +253,8 @@
                                         </form>
                                     </div>
                                     <div id="tab_2-2" class="tab-pane">
-                                        <form action="changeAvatar" role="form">
+                                        <form method="post" enctype="multipart/form-data" action="changeAvatar"
+                                              role="form">
                                             <div class="form-group">
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail"
@@ -249,7 +267,7 @@
                                                                     <span class="btn default btn-file">
                                                                         <span class="fileinput-new"> 选择图片 </span>
                                                                         <span class="fileinput-exists"> 更改 </span>
-                                                                        <input type="file" name="avatar"> </span>
+                                                                        <input type="file" name="file"> </span>
                                                         <a href="javascript:;" class="btn default fileinput-exists"
                                                            data-dismiss="fileinput"> 移除 </a>
                                                     </div>
@@ -259,7 +277,7 @@
                                                 </div>
                                             </div>
                                             <div class="margin-top-10">
-                                                <a href="javascript:;" class="btn green"> 提交 </a>
+                                                <input type="submit" class="btn green" value="修改"/>
                                             </div>
                                         </form>
                                     </div>

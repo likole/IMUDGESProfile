@@ -93,7 +93,7 @@
     </column>
     <column id="33" parent="16" name="description">
       <Position>6</Position>
-      <DataType>varchar(2000)|0</DataType>
+      <DataType>varchar(5000)|0</DataType>
     </column>
     <column id="34" parent="16" name="token">
       <Position>7</Position>
@@ -112,35 +112,39 @@
       <Position>10</Position>
       <DataType>varchar(300)|0</DataType>
     </column>
-    <key id="38" parent="16" name="PRIMARY">
+    <column id="38" parent="16" name="avatar">
+      <Position>11</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="39" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>mid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="39" parent="17" name="pid">
+    <column id="40" parent="17" name="pid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="40" parent="17" name="mid">
+    <column id="41" parent="17" name="mid">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="41" parent="17" name="filename">
+    <column id="42" parent="17" name="filename">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="42" parent="17" name="PICTURE_MEMBER_mid_fk">
+    <index id="43" parent="17" name="PICTURE_MEMBER_mid_fk">
       <ColNames>mid</ColNames>
     </index>
-    <key id="43" parent="17" name="PRIMARY">
+    <key id="44" parent="17" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>pid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="44" parent="17" name="PICTURE_MEMBER_mid_fk">
+    <foreign-key id="45" parent="17" name="PICTURE_MEMBER_mid_fk">
       <ColNames>mid</ColNames>
       <RefSchemaName>IMUDGES_PROFILE</RefSchemaName>
       <RefTableName>Member</RefTableName>
