@@ -51,6 +51,12 @@ public class ProfileService {
             memberDto.setGroup(member.getGid());
             memberDto.setDescription(member.getDescription());
             memberDto.setPictures(member.getPictures());
+            memberDto.setAvatar(member.getAvatar());
+            memberDto.setQq(member.getQq());
+            memberDto.setGithub(member.getGithub());
+            memberDto.setEmail(member.getEmail());
+            memberDto.setBirthday(info.getIdcard().substring(6,14));
+            memberDto.setHomepage(member.getHomepage());
 
             memberDtos.add(memberDto);
         }
@@ -58,8 +64,27 @@ public class ProfileService {
         return memberDtos;
     }
 
-    public Member getMember(int mid) {
-        return memberDao.getByMid(mid);
+    public MemberDto getMember(int mid) {
+
+        Member member= memberDao.getByMid(mid);
+        if(member==null)return null;
+        Info info = infoDao.getById(member.getSid());
+        MemberDto memberDto = new MemberDto();
+        memberDto.setName(info.getName());
+        memberDto.setMajor(info.getZy());
+        memberDto.setGrade(info.getBj());
+        memberDto.setBoy(info.getGender() == 1);
+        memberDto.setGroup(member.getGid());
+        memberDto.setDescription(member.getDescription());
+        memberDto.setPictures(member.getPictures());
+        memberDto.setAvatar(member.getAvatar());
+        memberDto.setQq(member.getQq());
+        memberDto.setGithub(member.getGithub());
+        memberDto.setEmail(member.getEmail());
+        memberDto.setBirthday(info.getIdcard().substring(6,14));
+        memberDto.setHomepage(member.getHomepage());
+
+        return memberDto;
     }
 
 }

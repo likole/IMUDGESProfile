@@ -15,6 +15,10 @@
             <result name="input">/WEB-INF/login.jsp</result>
             <result type="redirectAction">profile</result>
         </action>
+        <!--退出-->
+        <action name="logout" class="cn.likole.controller.MemberController" method="logout">
+            <result type="redirectAction">login</result>
+        </action>
         <!--个人简介-->
         <action name="profile" class="memberController" method="profile">
             <result name="input" type="redirectAction">login</result>

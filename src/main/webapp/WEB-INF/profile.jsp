@@ -73,9 +73,9 @@
             </ul>
             <div class="page-toolbar">
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn red btn-sm btn-outline"> 退出
+                    <a type="button" class="btn red btn-sm btn-outline" href="logout"> 退出
                         <i class="icon-logout"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -105,6 +105,18 @@ public class MemberController extends ActionSupport implements ModelDriven<Membe
 
 
     /**
+     * 退出
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws NoSuchAlgorithmException
+     */
+    public String logout() {
+        ActionContext.getContext().getSession().clear();
+        return SUCCESS;
+    }
+
+
+    /**
      * 个人信息
      *
      * @return

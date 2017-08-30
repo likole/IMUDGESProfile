@@ -44,7 +44,7 @@
     <div class="row bs-reset">
         <div class="col-md-6 bs-reset">
             <div class="login-bg" style="background-image:url(../assets/pages/img/login/bg1.jpg)">
-                <img class="login-logo" src="../assets/pages/img/login/logo.png" /> </div>
+                <img class="login-logo" width="50px" src="../assets/pages/img/login/logo.png" /> </div>
         </div>
         <div class="col-md-6 login-container bs-reset">
             <div class="login-content">
