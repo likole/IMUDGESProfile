@@ -4,6 +4,7 @@ import cn.likole.entity.Info;
 import cn.likole.entity.Member;
 import cn.likole.service.MemberService;
 import cn.likole.util.MD5Util;
+import com.aliyun.oss.OSSClient;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -195,6 +196,14 @@ public class MemberController extends ActionSupport implements ModelDriven<Membe
         while (-1!=(len=inputStream.read(bytes,0,bytes.length))){
             outputStream.write(bytes);
         }
+
+        //oss存储
+        String endpoint = "http://oss-cn-beijing.aliyuncs.com";
+        String accessKeyId = "";
+        String accessKeySecret = "";
+        OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
+        ossClient.putObject("imudges", fileName, inputStream);
+        ossClient.shutdown();
 
         inputStream.close();
         outputStream.close();
